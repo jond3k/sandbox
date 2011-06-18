@@ -7,22 +7,12 @@ Using the virtual memory systems of modern PCs you can selectively lock data.
 Why?
 ====
 
-The first time I came across this idea was when I studied garbage collection techniques. If you're scanning an object graph to
-find what can be safely reclaimed by the system it's important that the object graph doesn't change. One way to do this in a
-multithreaded application is to "stop the world" by suspending every thread using signal handler that waits on a semaphore
-before continuing. Nice idea, but sadly it doesn't scale very well.
-
-Memory barriers are a great alternative in this situation as they allow you to suspend only processes that need to be. The
-technique will no doubt be useful in other situations where parallelism needs to be increased or where conventional
-multhreading primitives are not an option.
+The first time I came across this idea was when I studied garbage collection techniques. If you're scanning an object graph to find what can be safely reclaimed by the system it's important that the object graph doesn't change. One way to do this in a multithreaded application is to "stop the world" by suspending every thread using signal handler that waits on a semaphore before continuing. Nice idea, but sadly it doesn't scale very well. Memory barriers are a great alternative in this situation as they allow you to suspend only processes that need to be suspended. The technique will no doubt be useful in other situations where parallelism needs to be increased or where conventional multhreading primitives are not an option.
 
 How?
 ====
 
-Using mprotect you can alter the protection level of a memory segment. Any resulting SIGSEGV signals can be caught and the
-thread in question can be made to wait by using a semaphore. When you want to release the lock the protection level is
-returned to its original value and the threads are released by posting to the semaphore. The need to maintain async-thread
--safety adds to the challenge.
+Using mprotect you can alter the protection level of a memory segment. Any resulting SIGSEGV signals can be caught and the thread in question can be made to wait by using a semaphore. When you want to release the lock the protection level is returned to its original value and the threads are released by posting to the semaphore. The need to maintain async-thread-safety adds to the challenge.
 
 Overview
 ========

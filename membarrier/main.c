@@ -11,12 +11,12 @@
 
 // The amount of time to lock the memory segment for
 #define LOCK_FOR 2
-#define UNLOCK_FOR 10
+#define UNLOCK_FOR 6
 
 static volatile sig_atomic_t running = 1;
 pthread_t thread[NUM_THREADS];
 
-void* segment_start;
+static volatile void* segment_start;
 long segment_size;
 
 struct barrier barrier;
@@ -45,7 +45,7 @@ void my_barrier_init()
     // make this thread immune to the write barrier
     whitelist[0] = pthread_self();
 
-    barrier.start = segment_start;
+    barrier.start = (void*)segment_start;
     barrier.size = segment_size;
     barrier.whitelist = whitelist;
     barrier.original_prot = PROT_READ | PROT_WRITE;
@@ -57,7 +57,7 @@ void increment_counter()
 {
     // the counter lives at the start of the lockable memory segment. 
     // ensure the compiler performs an atomic increment
-    sig_atomic_t* counter = (sig_atomic_t*)segment_start;
+    volatile sig_atomic_t* counter = (volatile sig_atomic_t*)segment_start;
     (*counter)++;
 
     printf("%x : incremented counter to %d\n", barrier_threadid(), *counter);
@@ -84,6 +84,7 @@ void* worker_main(void *arg)
         rand_sleep();
         increment_counter();
     }
+    return 0;
 }
 
 void create_workers()

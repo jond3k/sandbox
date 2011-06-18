@@ -3,7 +3,6 @@
 
 #include "barrier.h"
 
-
 /** Prepare the signal handler */
 void segvhandler_attach();
 

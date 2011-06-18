@@ -6,4 +6,4 @@ main: $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -o membarrier
 
 clean:
-	rm -f main main.o hello_fn.o
+	rm -f $(OBJECTS)
