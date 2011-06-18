@@ -1,0 +1,9 @@
+CC=gcc 
+CFLAGS=-Wall -pthread
+OBJECTS = barrierlist.o segvhandler.o barrier.o main.o
+
+main: $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) -o membarrier
+
+clean:
+	rm -f main main.o hello_fn.o
