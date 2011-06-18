@@ -1,0 +1,17 @@
+Concepts
+Jon Davey, 2011
+===============
+
+I've created this module to store sample code for some ideas that I've been experimenting with.
+
+Overview
+========
+
+membarrier     : Unconventional use of memory protection hardware can increase parallelism
+
+To do
+=====
+mamxss         : "Monads Ate My XSS" (pron: mamocks). An experiment in XSS prevention
+emailtemplates : A Python rewrite of an email templating system I wrote a few years ago
+distrisort     : How I'd sort more numbers than the memory of my computer can hold with the help of more cores than I can count
+
