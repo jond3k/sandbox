@@ -1,6 +1,8 @@
 #include "barrier.h"
+#include "barrierlist.h"
+#include "segvhandler.h"
 
-int barrier_deactivate(struct barrier* barrier)
+void barrier_deactivate(struct barrier* barrier)
 {
     printf("%x : deactivating memory barrier\n", barrier_threadid());
     if(mprotect(barrier->start, barrier->size-1, barrier->original_prot) != 0) {
@@ -21,7 +23,7 @@ int barrier_deactivate(struct barrier* barrier)
     barrier->waiting = 0;
 }
 
-int barrier_activate(struct barrier* barrier)
+void barrier_activate(struct barrier* barrier)
 {
     barrier->locked = 1;
 
@@ -53,7 +55,7 @@ int barrier_init(struct barrier* barrier)
     segvhandler_attach();
 }
 
-int barrier_destroy(struct barrier* barrier)
+void barrier_destroy(struct barrier* barrier)
 {
     if(barrier->locked != 0) {
         barrier_deactivate(barrier);

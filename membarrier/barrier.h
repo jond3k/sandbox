@@ -56,24 +56,24 @@ struct barrier {
 /**
  * Unlock the segment and wake all sleeping threads
  */
-int barrier_deactivate(struct barrier* barrier);
+void barrier_deactivate(struct barrier* barrier);
 
 /**
  * Lock the segment, blocking anyone who tries to use it
  */
-int barrier_activate(struct barrier* barrier);
+void barrier_activate(struct barrier* barrier);
 
 /**
  * Initialize a new memory barrier
  */
-int barrier_init(struct barrier* barrier);
+void barrier_init(struct barrier* barrier);
 
 /**
  * Clean up any internal resources used by the memory barrier
  * Potential race condition: A thread is handling its segfault but the barrier has been removed. In this condition a normal segfault will be raised, killing the thread.
  * The solution is to not destroy barriers immidiately after they have been used
  */
-int barrier_destroy(struct barrier* barrier);
+void barrier_destroy(struct barrier* barrier);
 
 /**
  * Return 1 if this thread has been whitelisted. This means it can skip the barrier.

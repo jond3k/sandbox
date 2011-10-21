@@ -2,6 +2,7 @@
 #define SEGVHANDLER
 
 #include "barrier.h"
+#include "barrierlist.h"
 
 /** Prepare the signal handler */
 void segvhandler_attach();
