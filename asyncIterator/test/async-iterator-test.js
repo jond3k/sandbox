@@ -1,6 +1,6 @@
 var assert = require('assert');
 
-var AsyncIterator = require('../../lib/async-iterator');
+var AsyncIterator = require('../src/async-iterator');
 
 module.exports = [
 	testIKnowHowDeleteWorks,
