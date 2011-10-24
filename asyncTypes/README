@@ -1,0 +1,32 @@
+There are two limitations with NodeJS that I've come up against:
+
+1) Callback spaghetti
+2) CPU-bound operations put everything else on hold
+
+I've been putting together a few ideas to see if I can make improvements.
+
+AsyncIterator
+=============
+
+The biggest scalability problem I've found with NodeJS servers is O(n) (or
+worse) operations where n is the number of connections. If it takes 3 seconds to
+iterate 10,000 users to send out keep-alives or gather stats then those 10,000
+users are going to be blocked for 3 seconds!
+
+WebWorkers are useful if there's no shared state, but that's not the case in
+examples like the above (though duplication and synchonization is an option).
+
+The Asynchronous Iterator is one solution to the problem: It splits long-running
+iterations up into smaller chunks, allowing other events to execute.
+
+The biggest limitation is that since V8 doesn't provide an Iterator object we're
+stuck to creating shallow copies of the original set, which in itself is an O(n)
+operation that might monopolize the CPU if there's enough stuff to iterate.
+
+PollingInterval
+===============
+
+Just because we have procedural interfaces doesn't mean we have to use them
+directly. When was the last time you called pthread_create? This object provides
+a start/stop abstraction on top of setInterval. I added it as a way to command
+Asynchronous Iterators and it's made my code a lot tidier.
