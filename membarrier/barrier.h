@@ -1,6 +1,8 @@
 #ifndef BARRIER_H
 #define BARRIER_H
 
+#define _GNU_SOURCE
+
 #include <pthread.h>
 #include <signal.h>
 #include <unistd.h>
@@ -66,7 +68,7 @@ void barrier_activate(struct barrier* barrier);
 /**
  * Initialize a new memory barrier
  */
-void barrier_init(struct barrier* barrier);
+int barrier_init(struct barrier* barrier);
 
 /**
  * Clean up any internal resources used by the memory barrier

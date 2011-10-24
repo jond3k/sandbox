@@ -4,7 +4,7 @@
 #define RAND_SEED 1
 
 // The maximum amount of time worker threads are allowed to sleep for
-#define WORKER_SLEEP_MAX 12
+#define WORKER_SLEEP_MAX 10
 
 // The number of threads to run
 #define NUM_THREADS 10
@@ -58,21 +58,21 @@ void increment_counter()
     // the counter lives at the start of the lockable memory segment. 
     // ensure the compiler performs an atomic increment
     volatile sig_atomic_t* counter = (volatile sig_atomic_t*)segment_start;
-    (*counter)++;
+
+	__sync_fetch_and_add(counter, 1);
 
     printf("%x : incremented counter to %d\n", barrier_threadid(), *counter);
 }
 
 void peek_counter()
 {
-    sig_atomic_t* counter = (sig_atomic_t*)segment_start;
-    printf("%x : it looks like the counter is %d\n", barrier_threadid(), *counter);
+    printf("%x : it looks like the counter is %d\n", barrier_threadid(), *((sig_atomic_t*)segment_start));
 
 }
 
 void rand_sleep()
 {
-    int sleep_for = random() % WORKER_SLEEP_MAX;
+    int sleep_for = rand() % WORKER_SLEEP_MAX;
     //printf("%x : sleeping for %d\n", barrier_threadid(), sleep_for);
     sleep(sleep_for);
 }
@@ -89,7 +89,7 @@ void* worker_main(void *arg)
 
 void create_workers()
 {
-    srandom(RAND_SEED);
+    srand(RAND_SEED);
     // create and start worker threads
     int i, code;
     for (i = 0; i < NUM_THREADS; i++) {
