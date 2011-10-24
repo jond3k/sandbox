@@ -1,11 +1,11 @@
 Concepts
-Jon Davey, 2011
-===============
+========
 
 I've created this module to store sample code for some ideas that I've been experimenting with.
 
 Overview
 ========
 
-membarrier     : Unconventional use of memory protection hardware can increase parallelism
+membarrier : Using memory protection to block writes. Used in parallel GCs
+asyncTypes : Some NodeJS concurrency building blocks
 

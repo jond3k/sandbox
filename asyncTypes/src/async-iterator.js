@@ -14,7 +14,7 @@ var events = require('events');
  * data. For this reason, ensure that you check the validity of objects that are
  * iterated.
  * 
- * @param int batchSize The number of items to process per event. (default=1)
+ * @param batchSize The number of items to process per event. (default=1)
  */
 function AsyncIterator(batchSize)
 {
@@ -26,7 +26,7 @@ function AsyncIterator(batchSize)
 		batchSize = this.DEFAULT_PER_EVENT;
 	}
 	this.batchSize = batchSize;
-	this.data     = null;
+	this.data      = null;
 }
 sys.inherits(AsyncIterator, events.EventEmitter);
 
@@ -53,7 +53,7 @@ AsyncIterator.prototype.iterate = function(data) {
 	//}
 
 	this.data = this._shallowCopy(data);
-	this._queueNextTick();
+	this._queueFirstTick();
 
 }
 
@@ -85,6 +85,13 @@ AsyncIterator.prototype._shallowCopy = function(data) {
 	}
 
 	return copy;
+}
+
+AsyncIterator.prototype._queueFirstTick = function() {
+	process.nextTick(function() {
+		this.emit('start');
+		this._nextTick();
+	}.bind(this));
 }
 
 /**

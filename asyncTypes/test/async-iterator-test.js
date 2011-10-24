@@ -1,5 +1,4 @@
 var assert = require('assert');
-
 var AsyncIterator = require('../src/async-iterator');
 
 module.exports = [
