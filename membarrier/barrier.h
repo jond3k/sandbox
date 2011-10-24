@@ -22,12 +22,12 @@ struct barrier {
     /**
      * The start of the segment
      */
-    void* start;
+    char* start;
 
     /**
      * The size of the segment
      */
-    long size;
+    size_t size;
 
     /**
      * True when locked

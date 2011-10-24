@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -std=c99 -pedantic -pthread -I.
+CFLAGS=-Wall -Werror -std=c99 -pedantic -pthread -I.
 OBJECTS = barrierlist.o segvhandler.o barrier.o main.o
 
 main: $(OBJECTS)

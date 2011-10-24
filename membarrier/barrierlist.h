@@ -41,6 +41,6 @@ void barrierlist_remove(struct barrier* barrier);
  * Find which memory barrier (if any) covers address addr
  * Reentrant and async-signal-safe
  */
-struct barrier* barrierlist_match(void* addr);
+struct barrier* barrierlist_match(char* addr);
 
 #endif

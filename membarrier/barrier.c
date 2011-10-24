@@ -53,6 +53,7 @@ int barrier_init(struct barrier* barrier)
     sem_init(&barrier->wait_sem, 0, 0);
     barrierlist_add(barrier);
     segvhandler_attach();
+	return 0;
 }
 
 void barrier_destroy(struct barrier* barrier)

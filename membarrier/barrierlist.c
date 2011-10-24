@@ -65,7 +65,7 @@ void barrierlist_remove(struct barrier* barrier)
     sem_post(&lock);
 }
 
-struct barrier* barrierlist_match(void* addr)
+struct barrier* barrierlist_match(char* addr)
 {
     // iterate the list until we find a match for this address
     struct barrierlist* list = barrierlist.next;
@@ -75,7 +75,7 @@ struct barrier* barrierlist_match(void* addr)
     while(list != 0) {
         item = list->item;
         if(addr >= item->start &&
-            addr < (item->start + item->size)) {
+            addr < (&item->start[item->size])) {
             result = item;
             break;
         }
