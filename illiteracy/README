@@ -1,0 +1,33 @@
+Inspired by http://news.ycombinator.com/item?id=3464671 I thought I'd put
+together a quick script to <del>prove that PHP programmers are
+stupid</del> see which set of programmers are the most likely to
+make spelling mistakes.
+
+At the time of writing:
+
+#  Language    Illiteracy Level
+1  C           54231.4
+2  PHP         27022.9
+3  Java        22017.1
+4  Python      8137.8
+5  Perl        4956.0
+6  JavaScript  4252.0
+7  Ruby        1642.7
+8  Shell       597.5
+
+I'm as atonished as you are. C programmers come out worst.. proving to be almost
+twice as lexically challenged as the PHP community.
+
+But don't take my word for it, run it yourself! Just don't take it too
+seriously :D
+
+~~
+
+A note on the results:
+
+In the process of doing this I've discovered a bug in GitHub's search
+highlighter. When searching for a word for a particular language, there's a chance
+the language name ("<?php", "C" for copyright in headers) will be highlighted if
+it appears before the term. Clearly they're doing a conjunctive "C and TERM"
+search and I've reported this so that they can make GitHub even more awesome :D
+
