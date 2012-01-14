@@ -28,6 +28,7 @@ A note on the results:
 In the process of doing this I've discovered a bug in GitHub's search
 highlighter. When searching for a word for a particular language, there's a chance
 the language name ("<?php", "C" for copyright in headers) will be highlighted if
-it appears before the term. Clearly they're doing a conjunctive "C and TERM"
-search and I've reported this so that they can make GitHub even more awesome :D
+it appears before the term. Clearly they're doing a conjunctive "<lang> AND
+<term>" search and not telling the highlighter to ignore the first term. I've
+reported this so that they can make GitHub even more awesome :D
 
