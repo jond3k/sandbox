@@ -6,6 +6,7 @@ I've created this module to store sample code for some ideas that I've been expe
 Overview
 ========
 
-membarrier : Using memory protection to block writes. Used in parallel GCs
-asyncTypes : Some NodeJS concurrency building blocks
+mem-barrier : Using memory protection to block writes. Used in parallel GCs
+async-types : Some NodeJS concurrency building blocks
+github-illiteracy-index : See which programmers are making the most typos
 
