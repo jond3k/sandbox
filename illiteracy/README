@@ -16,9 +16,9 @@ At the time of writing:
 8  Shell       597.5
 
 I'm as atonished as you are. C programmers come out worst.. proving to be almost
-twice as lexically challenged as the PHP community.
+twice as lexically challenged as the PHP community!
 
-But don't take my word for it, run it yourself! Just don't take it too
+But don't take my word for it, see for yourself! Just don't take it too
 seriously :D
 
 Deps: sudo pip install urllib3
@@ -31,6 +31,6 @@ In the process of doing this I've discovered a bug in GitHub's search
 highlighter. When searching for a word for a particular language, there's a chance
 the language name ("<?php", "C" for copyright in headers) will be highlighted if
 it appears before the term. Clearly they're doing a conjunctive "<lang> AND
-<term>" search and not telling the highlighter to ignore the first term. I've
-reported this so that they can make GitHub even more awesome :D
+<term>" search and not telling the highlighter to ignore the first term. I'm
+reporting this so that they can make GitHub even more awesome :D
 
