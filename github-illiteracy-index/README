@@ -5,15 +5,15 @@ make spelling mistakes.
 
 At the time of writing:
 
-#  Language    Illiteracy Level
-1  C           54231.4
-2  PHP         27022.9
-3  Java        22017.1
-4  Python      8137.8
-5  Perl        4956.0
-6  JavaScript  4252.0
-7  Ruby        1642.7
-8  Shell       597.5
+#  Language    Illiteracy  
+1  C           0.02877583  
+2  Perl        0.01635618  
+3  Ruby        0.01560477  
+4  JavaScript  0.01330989  
+5  Shell       0.01235425  
+6  Python      0.01046104  
+7  PHP         0.00910218  
+8  Java        0.00736395  
 
 I'm as atonished as you are. C programmers come out worst.. proving to be almost
 twice as lexically challenged as the PHP community!
@@ -22,6 +22,10 @@ But don't take my word for it, see for yourself! Just don't take it too
 seriously :D
 
 Deps: sudo pip install urllib3
+
+illiteracy-norm.py is the first version I made. It normalizes each language so
+they are made comparable, but ignores the fact that some languages use some
+words more than others. The new one is based on good vs bad spellings.
 
 ~~
 

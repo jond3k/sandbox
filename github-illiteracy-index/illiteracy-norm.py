@@ -5,26 +5,25 @@ import re
 
 LANGS_URL   = 'https://github.com/languages'
 SEARCH_URL  = 'https://github.com/search?type=Code&language=%s&q=%s'
+SEARCH_TERM = '.lenght'
 
-SEARCH_REGEX = r'<div class="title">Code \(([0-9]+)\)</div>'
-LANGS_REGEX  = r'<a href="/languages/([\w]*)"\s*class="bar"\s*style="width: [0-9]*%">\s*([0-9]*)%</a>'
-
-TERMS = {'length': 'lenght', 'height': 'heigth', 'hierarchy':'heirarchy'}
+FAIL_REGEX  = r'<div class="title">Code \(([0-9]+)\)</div>'
+LANGS_REGEX = r'<a href="/languages/([\w]*)"\s*class="bar"\s*style="width: [0-9]*%">\s*([0-9]*)%</a>'
 
 def request(url):
     print "Requesting: %s" % url
     return urllib2.urlopen(url).read()
 
-def extractSearchCount(body):
+def extractFailCount(body):
     result = 0
-    match  = re.search(SEARCH_REGEX, body).group(1)
-    count  = float(match)
+    match  = re.search(FAIL_REGEX, body).group(1)
+    count  = int(match)
     return count
 
-def getSearchCount(lang, term):
+def getFailCount(lang, term):
     url    = SEARCH_URL % (lang, term)
     body   = request(url)
-    result = extractSearchCount(body)
+    result = extractFailCount(body)
     return result
 
 def getLangs():
@@ -58,53 +57,56 @@ def printIndex(normalized):
     for lang in normalized:
         print format % (lang, langs[lang], round(normalized[lang],2))
 
-def getLangFreqs(lang, terms):
-    results = {}
-    for goodWord in terms:
-        failWord = terms[goodWord]
-        fails  = getSearchCount(lang, failWord)
-        passes = getSearchCount(lang, goodWord)
-        freq   = fails/passes
-        print "%s: %s = %s, %s = %s, Rate = %s" % (lang, goodWord, passes, failWord, fails, freq)
-        results[goodWord] = freq
-    return results
-
-def getAllFreqs(langs, terms):
-    print "Searching for occurrences of %s typos in %s languages.." % (len(terms), len(langs))
+def getAllFailCounts(langs):
+    print "Searching for occurrences of '%s' in %s languages.." % (SEARCH_TERM, len(langs))
     results = {}
     for lang in langs:
-        results[lang] = getLangFreqs(lang, terms)
+        fails         = getFailCount(lang, SEARCH_TERM)
+        results[lang] = fails
+    return results
+
+def normalizeFailCounts(normalized, counts):
+    results = {}
+    for lang in normalized:
+        normalization = normalized[lang]
+        fails         = counts[lang]
+        multiplied    = fails * normalization
+        results[lang] = multiplied
     return results
 
 def sortResults(results):
     return sorted(results.iteritems(), key=operator.itemgetter(1), reverse=True)
 
-def averageFreqs(langs):
-    results = {}
-    for lang in langs:
-        freqs = langs[lang]
-        total = 0
-        for freq in freqs:
-            total = total + freqs[freq]
-        avg   = total / len(freqs)
-        results[lang] = avg
-    return results
+def printFailCounts(counts):
+    format = "%-12s%-12s"
+    print format % ("Language", "Fails")
+    i = 0
+    for lang in counts:
+        i += 1
+        print format % (lang, counts[lang])
 
 def printSorted(sorted):
     format = "%-3s%-12s%-12s"
-    print format % ("#", "Language", "Illiteracy")
+    print format % ("#", "Language", "Illiteracy Level")
     i = 0
     for result in sorted:
         i += 1
-        print format % (i, result[0], round(result[1], 8))
+        print format % (i, result[0], round(result[1], 1))
 
-#langs = {'JavaScript': 20.0}
+#langs = {'JavaScript': 20.0, 'PHP': 7.0, 'Java': 7.0}
 langs      = getLangs()
+normalized = normalizeLangs(langs)
 
-freqs    = getAllFreqs(langs, TERMS)
-averaged = averageFreqs(freqs)
-sorted   = sortResults(averaged)
+print
+printIndex(normalized)
+print
 
+counts     = getAllFailCounts(langs)
+unsorted   = normalizeFailCounts(normalized, counts)
+sorted     = sortResults(unsorted)
+
+print
+printFailCounts(counts)
 print
 printSorted(sorted)
 print
