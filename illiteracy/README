@@ -21,6 +21,8 @@ twice as lexically challenged as the PHP community.
 But don't take my word for it, run it yourself! Just don't take it too
 seriously :D
 
+Deps: sudo pip install urllib3
+
 ~~
 
 A note on the results:
