@@ -1,4 +1,31 @@
-This script scans the top sites on Alexa and searches them for tracking scripts
+This is a mashup of Ghostery and Alexa which tries to determine the most popular
+tracking scripts on the web. I thoroughly recommend Ghostery by the way, it's a
+really good browser plugin.
+
+At the time of writing, these are the top 20 people who know where you are: 
+
+1  6933 Twitter Button
+2  4379 Quantcast
+3  3499 Google AdWords Conversion
+4  3393 OpenX
+5  3101 LiveInternet
+6  3084 ScoreCard Research Beacon
+7  2499 CNZZ
+8  2058 Twitter Badge
+9  1786 Statcounter
+10 1703 Whos.amung.us
+11 1661 ChartBeat
+12 1643 Google Custom Search Engine
+13 1551 Wordpress Stats
+14 1517 ShareThis
+15 1326 Histats
+16 1073 Crazy Egg
+17 1041 BuySellAds
+18 1025 Alexa Traffic Rank
+19 970  DoubleClick Floodlight
+20 925 Gemius
+
+=== Contents ===
 
 ghostery.json                   Ghostery's data file. A json object containing
                                 the and names of 'bugs' (trackers, etc) and
