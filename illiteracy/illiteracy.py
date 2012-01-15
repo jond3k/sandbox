@@ -11,7 +11,7 @@ FAIL_REGEX  = r'<div class="title">Code \(([0-9]+)\)</div>'
 LANGS_REGEX = r'<a href="/languages/([\w]*)"\s*class="bar"\s*style="width: [0-9]*%">\s*([0-9]*)%</a>'
 
 def request(url):
-    print "Request: %s" % url
+    print "Requesting: %s" % url
     return urllib2.urlopen(url).read()
 
 def extractFailCount(body):
@@ -58,7 +58,7 @@ def printIndex(normalized):
         print format % (lang, langs[lang], round(normalized[lang],2))
 
 def getAllFailCounts(langs):
-    print "Searching for mistakes.. (may take a while)"
+    print "Searching for occurrences of '%s' in %s languages.." % (SEARCH_TERM, len(langs))
     results = {}
     for lang in langs:
         fails         = getFailCount(lang, SEARCH_TERM)
@@ -77,7 +77,15 @@ def normalizeFailCounts(normalized, counts):
 def sortResults(results):
     return sorted(results.iteritems(), key=operator.itemgetter(1), reverse=True)
 
-def printResults(sorted):
+def printFailCounts(counts):
+    format = "%-12s%-12s"
+    print format % ("Language", "Fails")
+    i = 0
+    for lang in counts:
+        i += 1
+        print format % (lang, counts[lang])
+
+def printSorted(sorted):
     format = "%-3s%-12s%-12s"
     print format % ("#", "Language", "Illiteracy Level")
     i = 0
@@ -98,7 +106,9 @@ unsorted   = normalizeFailCounts(normalized, counts)
 sorted     = sortResults(unsorted)
 
 print
-printResults(sorted)
+printFailCounts(counts)
+print
+printSorted(sorted)
 print
 
 
