@@ -40,3 +40,83 @@ it appears before the term. Clearly they're doing a conjunctive "<lang> AND
 <term>" search and not telling the highlighter to ignore the first term. I'm
 reporting this so that they can make GitHub even more awesome :D
 
+~~
+
+To use all languages you can uncomment one of the regular expressions at the top
+of the script. This is a lot of queries so it's not very nice to do this to
+GitHub very often. Here's the results:
+
+#  Language    Illiteracy  
+1  Pure Data   0.34540663  
+2  Vala        0.12794867  
+3  R           0.11938138  
+4  FORTRAN     0.11145195  
+5  Io          0.11111111  
+6  Verilog     0.065334    
+7  D           0.05399035  
+8  Lua         0.04460448  
+9  ColdFusion  0.04045008  
+10 Prolog      0.04002351  
+11 Eiffel      0.03137475  
+12 C           0.02877583  
+13 ActionScript0.02132959  
+14 ASP         0.01698538  
+15 Assembly    0.01674247  
+16 Perl        0.01635618  
+17 AutoHotkey  0.01563921  
+18 Ruby        0.01560477  
+19 Mirah       0.01560477  
+20 Common Lisp 0.01553459  
+21 CoffeeScript0.01520177  
+22 HaXe        0.01480644  
+23 JavaScript  0.01330989  
+24 Shell       0.01235425  
+25 F#          0.01205607  
+26 OCaml       0.01205607  
+27 Dylan       0.01175015  
+28 Delphi      0.01156968  
+29 Erlang      0.01115317  
+30 C++         0.01063965  
+31 Python      0.01046104  
+32 Groovy      0.00978705  
+33 Objective-C 0.00941299  
+34 PHP         0.00910218  
+35 Go          0.00755837  
+36 Java        0.00736395  
+37 Ada         0.00702954  
+38 Haskell     0.00626451  
+39 C#          0.00548888  
+40 Tcl         0.00506828  
+41 Smalltalk   0.00496089  
+42 SuperCollider0.00491336  
+43 VHDL        0.0043951   
+44 Scala       0.00395118  
+45 Scheme      0.00276124  
+46 Matlab      0.00265616  
+47 Visual Basic0.00247304  
+48 Gosu        0.00228311  
+49 Emacs Lisp  0.00214845  
+50 Nemerle     0.00202724  
+51 VimL        0.00135823  
+52 Racket      0.00134221  
+53 Clojure     0.00116727  
+54 Standard ML 0.00074906  
+55 XQuery      0.00048948  
+56 Objective-J 0.00037889  
+57 Boo         0.0002451   
+58 ooc         0.00020833  
+59 Ioke        0.0         
+60 Arduino     0.0         
+61 Factor      0.0         
+62 Rebol       0.0         
+63 Nu          0.0         
+64 Fantom      0.0         
+65 Turing      0.0         
+66 Arc         0.0         
+67 Self        0.0         
+68 Parrot      0.0         
+69 Rust        0.0         
+70 Max/MSP     0.0         
+71 Fancy       0.0         
+(A result of 0 is unreliable as it could be due to an absense of both good and
+bad spelling attempts)
