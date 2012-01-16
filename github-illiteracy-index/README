@@ -1,7 +1,8 @@
 Inspired by http://news.ycombinator.com/item?id=3464671 I thought I'd put
 together a quick script to <del>prove that PHP programmers are
 stupid</del> see which set of programmers are the most likely to
-make spelling mistakes.
+make spelling mistakes by comparing the number of correct spellings to 
+the number of incorrect spellings in GitHub projects.
 
 At the time of writing:
 
@@ -16,6 +17,9 @@ At the time of writing:
 8  Objective-C 0.00941299  
 9  PHP         0.00910218  
 10 Java        0.00736395  
+
+For every instance of a correctly spelled word (length, height, hierarchy) there
+are 0.028 mistakes (lenght, heigth, heirarchy), a 2.8% chance.
 
 I'm as atonished as you are. C programmers come out worst.. proving to be more
 than twice as lexically challenged as the PHP community!
