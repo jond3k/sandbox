@@ -7,13 +7,15 @@ At the time of writing:
 
 #  Language    Illiteracy  
 1  C           0.02877583  
-2  Perl        0.01635618  
-3  Ruby        0.01560477  
-4  JavaScript  0.01330989  
-5  Shell       0.01235425  
-6  Python      0.01046104  
-7  PHP         0.00910218  
-8  Java        0.00736395  
+2  C++         0.01682951  
+3  Perl        0.01635618  
+4  Ruby        0.01560477  
+5  JavaScript  0.01330989  
+6  Shell       0.01235425  
+7  Python      0.01046104  
+8  Objective-C 0.00941299  
+9  PHP         0.00910218  
+10 Java        0.00736395  
 
 I'm as atonished as you are. C programmers come out worst.. proving to be more
 than twice as lexically challenged as the PHP community!

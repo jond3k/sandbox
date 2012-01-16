@@ -7,7 +7,7 @@ LANGS_URL   = 'https://github.com/languages'
 SEARCH_URL  = 'https://github.com/search?type=Code&language=%s&q=%s'
 
 SEARCH_REGEX = r'<div class="title">Code \(([0-9]+)\)</div>'
-LANGS_REGEX  = r'<a href="/languages/([\w]*)"\s*class="bar"\s*style="width: [0-9]*%">\s*([0-9]*)%</a>'
+LANGS_REGEX  = r'<a href="/languages/([^\b"]*)"\s*class="bar"\s*style="width: [0-9]*%">\s*([0-9]*)%</a>'
 
 TERMS = {'length': 'lenght', 'height': 'heigth', 'hierarchy':'heirarchy'}
 
@@ -96,7 +96,7 @@ def printSorted(sorted):
     i = 0
     for result in sorted:
         i += 1
-        print format % (i, result[0], round(result[1], 8))
+        print format % (i,  urllib2.unquote(result[0]), round(result[1], 8))
 
 #langs = {'JavaScript': 20.0}
 langs      = getLangs()
